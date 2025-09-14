@@ -1,38 +1,177 @@
-.App {
+/* Navbar styling */
+.navbar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Applies to all pages */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container h1 {
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container .subtitle {
+  color: #555;
+  margin-bottom: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.welcome-links p {
+  margin: 10px 0;
+}
+
+.welcome-links a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.welcome-links a:hover {
+  text-decoration: underline;
+}
+
+form {
+  text-align: left;
+  max-width: 400px; /* keep form compact */
+  margin: 0 auto;   /* center the form */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* fixes padding mismatch */
+}
+
+.form-actions {
+  text-align: center; /* centers buttons */
+  margin-top: 15px;
+}
+
+.form-actions button {
+  margin: 0 5px;   /* add horizontal gap between buttons */
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.car-card {
+  display: block; /* makes the whole card clickable */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  background-color: #fafafa;
+  text-decoration: none; /* remove underline from link */
+  color: #333;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.car-card:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-3px);
+}
+
+.car-card strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.car-card p {
+  margin: 6px 0;
+  color: #555;
+}
+
+.search-form .form-inline {
+  display: flex;
+  flex-wrap: wrap;           /* allow wrapping inside container */
+  gap: 8px;
+  margin-bottom: 15px;
+  justify-content: center;   /* keep everything centered */
+}
+
+.search-form .form-inline input {
+  flex: 1 1 100px;           /* flexible width but not too small */
+  max-width: 120px;          /* prevent overflowing */
+  padding: 6px;
+}
+
+.search-form .form-inline input[type="number"] {
+  flex: 1 1 70px;            /* smaller for Min/Max */
+  max-width: 80px;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* keep consistent with inputs */
+  min-height: 80px;       /* a bit taller than inputs */
+  resize: vertical;       /* allow user to expand if needed */
+}
+
+/* Scoped only to CarDetails page */
+.car-details {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.car-details p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 15px;
+}
+
+.car-details strong {
+  display: inline;   /* inline so it shows: Make: Honda */
+  margin-right: 6px;
 }

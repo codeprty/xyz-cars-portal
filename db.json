@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "ddb5",
+      "name": "Anri",
+      "email": "anri@gmail.com",
+      "password": "abc123"
+    }
+  ],
+  "cars": [
+    {
+      "id": "1",
+      "make": "Toyota",
+      "model": "Corolla",
+      "registration": "SGX1234A",
+      "price": 15000,
+      "description": "Reliable family car."
+    },
+    {
+      "id": "2",
+      "make": "Honda",
+      "model": "Civic",
+      "registration": "SGX5678B",
+      "price": 18000,
+      "description": "Sporty compact car."
+    },
+    {
+      "id": "fa65",
+      "make": "Perodua",
+      "model": "Myvi",
+      "registration": "QAA9980K",
+      "price": 25000,
+      "description": "Good condition",
+      "userId": "ddb5"
+    },
+    {
+      "id": "0659",
+      "make": "Proton",
+      "model": "Wira",
+      "registration": "KC9112",
+      "price": 7000,
+      "description": "Decent condition.",
+      "userId": "ddb5"
+    }
+  ]
+}
