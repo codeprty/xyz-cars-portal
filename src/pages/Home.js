@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { getCars } from "../services/carService";
-import { Link } from "react-router-dom";
+import CarCard from "../components/CarCard";
 
 const Home = () => {
   const [myCars, setMyCars] = useState([]);
@@ -37,10 +37,7 @@ const Home = () => {
         ) : (
           <div className="car-grid">
             {myCars.map((car) => (
-              <Link to={`/cars/${car.id}`} key={car.id} className="car-card">
-                <strong>{car.make} {car.model}</strong>
-                <p>${car.price}</p>
-              </Link>
+              <CarCard key={car.id} car={car} />
             ))}
           </div>
         )}
