@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { getCarById, updateCar, deleteCar } from "../services/carService";
+import CarForm from "../components/CarForm";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -108,64 +109,13 @@ const CarDetails = () => {
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSave}>
-            <div className="form-group">
-              <label>Make:</label>
-              <input
-                value={car.make}
-                onChange={(e) => setCar({ ...car, make: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Model:</label>
-              <input
-                value={car.model}
-                onChange={(e) => setCar({ ...car, model: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Registration:</label>
-              <input
-                value={car.registration}
-                onChange={(e) => setCar({ ...car, registration: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Price:</label>
-              <input
-                type="number"
-                value={car.price}
-                onChange={(e) => setCar({ ...car, price: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Description:</label>
-              <textarea
-                value={car.description}
-                onChange={(e) => setCar({ ...car, description: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="form-actions">
-              <button type="submit">Save</button>
-              <button
-                type="button"
-                onClick={() => setEditMode(false)}
-                className="btn-secondary"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+          <CarForm
+            car={car}
+            setCar={setCar}
+            onSubmit={handleSave}
+            onCancel={() => setEditMode(false)}
+            submitLabel="Update"
+          />
         )}
       </div>
     </div>
