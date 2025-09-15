@@ -2,6 +2,7 @@
 .navbar {
   text-align: center;
   margin-bottom: 20px;
+  padding-top: 20px;
 }
 
 .navbar a {
@@ -24,6 +25,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   text-align: center;
+  padding-bottom: 40px;
 }
 
 .container h1 {
@@ -40,9 +42,9 @@
 }
 
 .welcome-links a {
-  color: #333;
+  color: #007bff;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .welcome-links a:hover {
@@ -160,9 +162,13 @@ button:hover {
 
 /* Scoped only to CarDetails page */
 .car-details {
-  text-align: left;
-  margin: 0 auto;
-  max-width: 500px;
+  display: inline-block;   /* lets text-align:center on the parent center this box */
+  text-align: left;        /* keeps internal text left-aligned */
+  max-width: 500px;        /* limit width so it doesn't stretch too wide */
+  width: auto;             /* shrink to content up to max-width */
+  padding: 0 20px;         /* inner spacing so text isn't flush to the edge */
+  vertical-align: top;     /* keeps block aligned nicely with surrounding content */
+  margin: 0;  
 }
 
 .car-details p {
@@ -174,4 +180,37 @@ button:hover {
 .car-details strong {
   display: inline;   /* inline so it shows: Make: Honda */
   margin-right: 6px;
+}
+
+/* Shorter input boxes for Login & Register */
+.login-form input,
+.register-form input {
+  width: 80%;          /* narrower than full width */
+  max-width: 280px;    /* keeps it compact */
+  margin: 0 auto;      /* center the input */
+  display: block;      /* ensures margin auto works */
+}
+
+/* Align labels with the narrower input boxes in Login & Register forms */
+.login-form .form-group,
+.register-form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the whole group within container */
+}
+
+.login-form .form-group label,
+.register-form .form-group label {
+  width: 80%;           /* same width as input */
+  max-width: 280px;     /* match input max width */
+  text-align: left;     /* align text with input's left edge */
+  margin-bottom: 6px;
+}
+
+.login-form .form-group input,
+.register-form .form-group input {
+  width: 80%;
+  max-width: 280px;
+  margin: 0;            /* no extra offset, aligns with label */
+  display: block;
 }
