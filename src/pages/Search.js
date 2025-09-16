@@ -1,9 +1,14 @@
+// This page allows users to search for cars based on multiple filters:
+// Make, Model, Registration number, and Price range. 
+// It fetches cars from the backend and applies client-side filtering.
+
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { getCars } from "../services/carService";
 import CarCard from "../components/CarCard";
 
 const Search = () => {
+  // State variables for all cars, filtered cars, and search filters
   const [cars, setCars] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [make, setMake] = useState("");
@@ -12,12 +17,13 @@ const Search = () => {
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
 
+  // Fetch all cars once on component mount
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await getCars();
+        const data = await getCars(); // Get car list from backend
         setCars(data);
-        setFiltered(data);
+        setFiltered(data); // Initially show all cars
       } catch (err) {
         console.error("Failed to fetch cars:", err);
       }
@@ -25,12 +31,15 @@ const Search = () => {
     fetch();
   }, []);
 
+  // Handle search filter submission
   const handleSearch = (e) => {
     e.preventDefault();
 
+    // Convert price fields to numbers (or null if empty)
     const min = priceMin === "" ? null : Number(priceMin);
     const max = priceMax === "" ? null : Number(priceMax);
 
+    // Apply filters to car list
     const result = cars.filter((car) => {
       const matchMake =
         make.trim() === "" ||
@@ -48,9 +57,10 @@ const Search = () => {
       return matchMake && matchModel && matchReg && matchPrice;
     });
 
-    setFiltered(result);
+    setFiltered(result); // Update search results
   };
 
+  // Reset all filters and show full list
   const handleReset = () => {
     setMake("");
     setModel("");
@@ -66,9 +76,10 @@ const Search = () => {
       <div className="container">
         <h1>Search Cars</h1>
 
-        {/* Compact horizontal form */}
+        {/* Search form */}
         <form onSubmit={handleSearch} className="search-form">
           <div className="form-inline">
+            {/* Search input fields */}
             <input
               type="text"
               placeholder="Make"
@@ -101,7 +112,7 @@ const Search = () => {
             />
           </div>
 
-          {/* Buttons centered below */}
+          {/* Action buttons */}
           <div className="form-actions">
             <button type="submit">Search</button>
             <button type="button" onClick={handleReset} className="btn-secondary">
@@ -110,6 +121,7 @@ const Search = () => {
           </div>
         </form>
 
+        {/* Search results */}
         <h3>Results ({filtered.length})</h3>
         {filtered.length === 0 ? (
           <p>No cars found.</p>

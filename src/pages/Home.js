@@ -1,23 +1,28 @@
+// This page displays the logged-in user's personal car listings.
+// It fetches all cars from the backend and filters them based on the user's ID.
+
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import { getCars } from "../services/carService";
-import CarCard from "../components/CarCard";
+import Navbar from "../components/Navbar"; // Navigation bar component
+import { getCars } from "../services/carService"; // API call to fetch cars
+import CarCard from "../components/CarCard"; // Reusable card to display car details
 
 const Home = () => {
-  const [myCars, setMyCars] = useState([]);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [myCars, setMyCars] = useState([]); // State to store user's cars
+  const user = JSON.parse(localStorage.getItem("user")); // Get current logged-in user from local storage
 
+  // Fetch cars when the component loads
   useEffect(() => {
     const fetchMyCars = async () => {
       if (user) {
-        const allCars = await getCars();
-        const userCars = allCars.filter((car) => car.userId === user.id);
-        setMyCars(userCars);
+        const allCars = await getCars(); // Fetch all cars from backend
+        const userCars = allCars.filter((car) => car.userId === user.id); // Filter cars belonging to logged-in user
+        setMyCars(userCars); // Store filtered cars in state
       }
     };
     fetchMyCars();
   }, [user]);
 
+  // If no user is logged in, show login reminder
   if (!user) {
     return (
       <div className="container">
@@ -26,6 +31,7 @@ const Home = () => {
     );
   }
 
+  // If user is logged in, show their car listings
   return (
     <div>
       <Navbar />
@@ -37,7 +43,7 @@ const Home = () => {
         ) : (
           <div className="car-grid">
             {myCars.map((car) => (
-              <CarCard key={car.id} car={car} />
+              <CarCard key={car.id} car={car} /> // Render each car using CarCard component
             ))}
           </div>
         )}

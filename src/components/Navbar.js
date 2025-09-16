@@ -1,11 +1,19 @@
-import React from "react";
+// This component renders the navigation bar for the app.
+// It provides links to Home, Search, Post, and a Logout action.
+// Logout clears the saved user info from localStorage and redirects to Login.
+
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
+  // Handle logout action:
+  // - Prevents default link behavior
+  // - Removes user info from localStorage
+  // - Shows a logout confirmation alert
+  // - Redirects user to Login page
   const handleLogout = (e) => {
-    e.preventDefault(); // prevent default link behavior
+    e.preventDefault();
     localStorage.removeItem("user");
     alert("You have been logged out.");
     navigate("/login");
@@ -13,10 +21,14 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      {/* Navigation links to different pages */}
       <Link to="/home">Home</Link>
       <Link to="/search">Search</Link>
       <Link to="/post">Post</Link>
-      <a href="/logout" onClick={handleLogout}>Logout</a>
+      {/* Logout is handled via onClick, not a real link */}
+      <a href="/logout" onClick={handleLogout}>
+        Logout
+      </a>
     </nav>
   );
 };

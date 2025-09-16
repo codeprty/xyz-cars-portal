@@ -1,4 +1,6 @@
-import React from "react";
+// This is the Welcome (landing) page of the XYZ Cars Portal.
+// It introduces the app and provides navigation links to Register or Login.
+
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
