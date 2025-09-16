@@ -3,25 +3,17 @@
     {
       "id": "1",
       "name": "John Doe",
-      "email": "john@example.com",
+      "email": "john@gmail.com",
       "password": "123456"
     },
     {
-      "id": "ddb5",
-      "name": "Anri",
-      "email": "anri@gmail.com",
+      "id": "2",
+      "name": "Jane Doe",
+      "email": "jane@gmail.com",
       "password": "abc123"
     }
   ],
   "cars": [
-    {
-      "id": "1",
-      "make": "Toyota",
-      "model": "Corolla",
-      "registration": "SGX1234A",
-      "price": 15000,
-      "description": "Reliable family car."
-    },
     {
       "id": "2",
       "make": "Honda",
@@ -31,22 +23,21 @@
       "description": "Sporty compact car."
     },
     {
-      "id": "fa65",
+      "id": "3",
       "make": "Perodua",
       "model": "Myvi",
       "registration": "QAA9980K",
       "price": 25000,
-      "description": "Good condition",
-      "userId": "ddb5"
+      "description": "Decent condition."
     },
     {
-      "id": "0659",
-      "make": "Proton",
-      "model": "Wira",
-      "registration": "KC9112",
-      "price": 7000,
-      "description": "Decent condition.",
-      "userId": "ddb5"
+      "make": "Toyota",
+      "model": "Vios",
+      "registration": "SGX1234A",
+      "price": 45000,
+      "description": "Reliable car.",
+      "userId": "1",
+      "id": "R3_A1Sd"
     }
   ]
 }
