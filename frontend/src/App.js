@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Post from "./pages/Post";
 import CarDetails from "./pages/CarDetails";
+import OAuthCallback from "./pages/OAuthCallback";
 import './App.css';
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
         <Route path="/post" element={<Post />} />
         {/* Car details page (dynamic route with car ID) */}
         <Route path="/cars/:id" element={<CarDetails />} />
+        {/* GitHub OAuth Login Integration ) */}
+        <Route path="/oauth-callback" element={<OAuthCallback />} />
       </Routes>
     </Router>
   );

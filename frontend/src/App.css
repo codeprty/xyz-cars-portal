@@ -16,6 +16,22 @@
   text-decoration: underline;
 }
 
+.navbar button.logout-button {
+  margin: 0 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;   
+  color: #007bff;
+  font-weight: 500;
+  cursor: pointer; 
+  text-decoration: none;
+}
+
+.navbar button.logout-button:hover {
+  text-decoration: underline; 
+}
+
 /* Applies to all pages */
 .container {
   max-width: 600px;

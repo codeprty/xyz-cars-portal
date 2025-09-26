@@ -15,6 +15,7 @@ const Navbar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     alert("You have been logged out.");
     navigate("/login");
   };
@@ -26,9 +27,7 @@ const Navbar = () => {
       <Link to="/search">Search</Link>
       <Link to="/post">Post</Link>
       {/* Logout is handled via onClick, not a real link */}
-      <a href="/logout" onClick={handleLogout}>
-        Logout
-      </a>
+      <button onClick={handleLogout} className="logout-button">Logout</button>
     </nav>
   );
 };

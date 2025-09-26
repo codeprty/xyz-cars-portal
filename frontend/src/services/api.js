@@ -10,4 +10,11 @@ const api = axios.create({
   baseURL: "http://localhost:5000", // backend server address
 });
 
+// Let API client send the JWT for protected calls
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
 export default api; // export so other files can use this instance

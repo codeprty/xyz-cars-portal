@@ -9,7 +9,6 @@ const Login = () => {
   // State to hold form input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate(); // Hook for navigation
 
   // Handle login form submission
@@ -22,6 +21,7 @@ const Login = () => {
         // If a matching user is found
         const user = users[0];
         localStorage.setItem("user", JSON.stringify(user)); // Save user data to localStorage
+        localStorage.setItem("token", "local-login");
         alert("Login successful!");
         navigate("/home"); // Redirect to home page
       } else {
@@ -31,6 +31,11 @@ const Login = () => {
       console.error("Login error:", error); // Log error to console
       alert("Login failed."); // Show error message
     }
+  };
+
+  // GitHub OAuth Login Integration
+  const handleGithubLogin = () => {
+    window.location.href = `${process.env.REACT_APP_BACKEND_URL}/auth/github/login`;
   };
 
   return (
@@ -67,6 +72,12 @@ const Login = () => {
           <button type="submit">Login</button>
         </div>
       </form>
+      {/* Login with GitHub button */}
+      <div className="oauth-login form-actions">
+        <button onClick={handleGithubLogin} className="github-btn">
+          Login with GitHub
+        </button>
+      </div>
     </div>
   );
 };
