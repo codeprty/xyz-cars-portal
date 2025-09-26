@@ -1,43 +1,4 @@
 {
-  "users": [
-    {
-      "id": "1",
-      "name": "John Doe",
-      "email": "john@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "2",
-      "name": "Jane Doe",
-      "email": "jane@gmail.com",
-      "password": "abc123"
-    }
-  ],
-  "cars": [
-    {
-      "id": "2",
-      "make": "Honda",
-      "model": "Civic",
-      "registration": "SGX5678B",
-      "price": 18000,
-      "description": "Sporty compact car."
-    },
-    {
-      "id": "3",
-      "make": "Perodua",
-      "model": "Myvi",
-      "registration": "QAA9980K",
-      "price": 25000,
-      "description": "Decent condition."
-    },
-    {
-      "make": "Toyota",
-      "model": "Vios",
-      "registration": "SGX1234A",
-      "price": 45000,
-      "description": "Reliable car.",
-      "userId": "1",
-      "id": "R3_A1Sd"
-    }
-  ]
+  "users": [],
+  "cars": []
 }
