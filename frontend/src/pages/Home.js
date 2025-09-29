@@ -12,15 +12,21 @@ const Home = () => {
 
   // Fetch cars when the component loads
   useEffect(() => {
-    const fetchMyCars = async () => {
-      if (user) {
-        const allCars = await getCars(); // Fetch all cars from backend
-        const userCars = allCars.filter((car) => car.userId === user.id); // Filter cars belonging to logged-in user
-        setMyCars(userCars); // Store filtered cars in state
-      }
-    };
-    fetchMyCars();
-  }, [user]);
+  if (!user) return;
+
+  const fetchMyCars = async () => {
+    try {
+      const allCars = await getCars();
+      const userCars = allCars.filter((car) => car.userId === user.id);
+      setMyCars(userCars);
+    } catch (err) {
+      console.error("Error fetching cars:", err);
+    }
+  };
+
+  fetchMyCars();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   // If no user is logged in, show login reminder
   if (!user) {
