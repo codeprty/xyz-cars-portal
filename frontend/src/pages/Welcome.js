@@ -1,6 +1,3 @@
-// This is the Welcome (landing) page of the XYZ Cars Portal.
-// It introduces the app and provides navigation links to Register or Login.
-
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
@@ -8,7 +5,6 @@ const Welcome = () => {
     <div className="container">
       <h1>Welcome to XYZ Cars Portal</h1>
       <p className="subtitle">Your one-stop portal for buying and selling cars</p>
-
       <div className="welcome-links">
         <p>
           New here? <Link to="/register">Register</Link>

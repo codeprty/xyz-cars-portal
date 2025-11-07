@@ -1,12 +1,6 @@
-// This component provides a reusable form for creating or editing a car.
-// It includes input fields for car details (make, model, registration, price, description).
-// The form is controlled using props (car, setCar, onSubmit, onCancel, submitLabel).
-
 const CarForm = ({ car, setCar, onSubmit, onCancel, submitLabel }) => {
   return (
-    // Form wrapper with onSubmit handler passed from parent component
     <form onSubmit={onSubmit}>
-      {/* Car Make field */}
       <div className="form-group">
         <label>Make:</label>
         <input
@@ -17,7 +11,6 @@ const CarForm = ({ car, setCar, onSubmit, onCancel, submitLabel }) => {
         />
       </div>
 
-      {/* Car Model field */}
       <div className="form-group">
         <label>Model:</label>
         <input
@@ -28,7 +21,6 @@ const CarForm = ({ car, setCar, onSubmit, onCancel, submitLabel }) => {
         />
       </div>
 
-      {/* Car Registration field */}
       <div className="form-group">
         <label>Registration:</label>
         <input
@@ -39,7 +31,6 @@ const CarForm = ({ car, setCar, onSubmit, onCancel, submitLabel }) => {
         />
       </div>
 
-      {/* Car Price field */}
       <div className="form-group">
         <label>Price:</label>
         <input
@@ -50,7 +41,6 @@ const CarForm = ({ car, setCar, onSubmit, onCancel, submitLabel }) => {
         />
       </div>
 
-      {/* Car Description field */}
       <div className="form-group">
         <label>Description:</label>
         <textarea
@@ -60,7 +50,6 @@ const CarForm = ({ car, setCar, onSubmit, onCancel, submitLabel }) => {
         />
       </div>
 
-      {/* Form action buttons (Submit and optional Cancel) */}
       <div className="form-actions">
         <button type="submit">{submitLabel || "Save"}</button>
         {onCancel && (

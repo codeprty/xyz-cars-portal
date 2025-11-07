@@ -1,39 +1,32 @@
-// This page allows users to log in with their email and password.
-// If the login is successful, the user data is stored in localStorage and the user is redirected to the Home page.
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Used for page navigation
-import { loginUser } from "../services/userService"; // Service function for login
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/userService";
 
 const Login = () => {
-  // State to hold form input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
-  // Handle login form submission
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent default form reload
+    e.preventDefault();
 
     try {
-      const users = await loginUser(email, password); // Attempt login
+      const users = await loginUser(email, password);
       if (users.length > 0) {
-        // If a matching user is found
         const user = users[0];
-        localStorage.setItem("user", JSON.stringify(user)); // Save user data to localStorage
+        localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", "local-login");
         alert("Login successful!");
-        navigate("/home"); // Redirect to home page
+        navigate("/home");
       } else {
-        alert("Invalid email or password."); // Show error if login fails
+        alert("Invalid email or password.");
       }
     } catch (error) {
-      console.error("Login error:", error); // Log error to console
-      alert("Login failed."); // Show error message
+      console.error("Login error:", error);
+      alert("Login failed.");
     }
   };
 
-  // GitHub OAuth Login Integration
   const handleGithubLogin = () => {
     window.location.href = `${process.env.REACT_APP_BACKEND_URL}/auth/github/login`;
   };
@@ -41,9 +34,7 @@ const Login = () => {
   return (
     <div className="container">
       <h1>Login</h1>
-      {/* Login form */}
       <form onSubmit={handleLogin} className="login-form">
-        {/* Email field */}
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -55,7 +46,6 @@ const Login = () => {
             required
           />
         </div>
-        {/* Password field */}
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
@@ -67,12 +57,10 @@ const Login = () => {
             required
           />
         </div>
-        {/* Submit button */}
         <div className="form-actions">
           <button type="submit">Login</button>
         </div>
       </form>
-      {/* Login with GitHub button */}
       <div className="oauth-login form-actions">
         <button onClick={handleGithubLogin} className="github-btn">
           Login with GitHub
