@@ -21,7 +21,7 @@ const Home = () => {
     };
 
     fetchMyCars();
-  }, []);
+  }, [user]);
 
   if (!user) {
     return (
