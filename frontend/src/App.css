@@ -225,3 +225,88 @@ button:hover {
   margin: 0;
   display: block;
 }
+
+/* =============================
+   Business & Product List Styles
+   ============================= */
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.list-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.list-item:hover {
+  background-color: #f0f0f0;
+}
+
+.list-item strong {
+  color: #333;
+  font-size: 15px;
+}
+
+.form-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.form-inline input,
+.form-inline select {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-inline button {
+  padding: 6px 12px;
+}
+
+.list-item button {
+  margin-left: 8px;
+  padding: 5px 10px;
+  font-size: 13px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.list-item button:hover {
+  background-color: #0056b3;
+}
+
+.list-item button:last-child {
+  background-color: #dc3545;
+}
+
+.list-item button:last-child:hover {
+  background-color: #b52a3a;
+}
+
+/* For forms within editing state */
+.form-inline input[type="text"],
+.form-inline input[type="number"] {
+  min-width: 120px;
+}

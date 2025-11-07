@@ -16,6 +16,10 @@ const Navbar = () => {
       <Link to="/home">Home</Link>
       <Link to="/search">Search</Link>
       <Link to="/post">Post</Link>
+      <Link to="/businesses">Businesses</Link>
+      <Link to="/products">Products</Link>
+      <Link to="/cart">Cart</Link>
+      <Link to="/orders">Orders</Link>
       <button onClick={handleLogout} className="logout-button">Logout</button>
     </nav>
   );
