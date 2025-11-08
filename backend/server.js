@@ -150,7 +150,7 @@ app.get('/api/businesses', async (req, res) => {
 });
 
 app.post('/api/businesses', authenticate, requireAdmin, async (req, res) => {
-  const errorMsg = validateFields(['name'], req.body);
+  const errorMsg = validateFields(['name', 'businessType', 'location', 'contact'], req.body);
   if (errorMsg) return res.status(400).json({ error: errorMsg });
   try {
     const resp = await axios.post(`${JSON_SERVER_URL}/businesses`, req.body);
@@ -324,6 +324,54 @@ app.use((err, req, res, next) => {
     error: err.message || 'Internal Server Error',
   });
 });
+
+// =========================
+// PAYMENT SIMULATION ENDPOINT
+// =========================
+const fs = require("fs");
+const path = require("path");
+
+app.post("/payment/simulate", async (req, res) => {
+  try {
+    const { orderId, result } = req.body;
+
+    if (!orderId || !["success", "fail"].includes(result)) {
+      return res.status(400).json({ message: "Invalid request parameters" });
+    }
+
+    // Load db.json
+    const dbPath = path.join(__dirname, "db.json");
+    const dbData = JSON.parse(fs.readFileSync(dbPath, "utf8"));
+
+    // Find order
+    const orderIndex = dbData.orders.findIndex((o) => o.id === orderId);
+    if (orderIndex === -1) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    // Update order status
+    const order = dbData.orders[orderIndex];
+    if (result === "success") {
+      order.status = "Paid";
+    } else {
+      order.status = "Payment Failed";
+    }
+
+    // Save db.json
+    dbData.orders[orderIndex] = order;
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    // Send response
+    res.json({
+      message: result === "success" ? "Payment success" : "Payment failed",
+      order,
+    });
+  } catch (err) {
+    console.error("Payment simulation error:", err);
+    res.status(500).json({ message: "Server error simulating payment" });
+  }
+});
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Auth server started on ${port}`));

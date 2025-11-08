@@ -106,39 +106,51 @@ const ProductList = () => {
         )}
 
         <ul className="list">
-          {products.map((p) => (
-            <li key={p.id} className="list-item">
-              {editing && editing.id === p.id ? (
-                <form onSubmit={handleUpdate} className="form-inline">
-                  <input
-                    type="text"
-                    value={editing.name}
-                    onChange={(e) => setEditing({ ...editing, name: e.target.value })}
-                    required
-                  />
-                  <input
-                    type="number"
-                    value={editing.price}
-                    onChange={(e) => setEditing({ ...editing, price: e.target.value })}
-                    required
-                  />
-                  <button type="submit">Save</button>
-                  <button type="button" onClick={() => setEditing(null)}>Cancel</button>
-                </form>
-              ) : (
-                <>
-                  <strong>{p.name}</strong> — RM{p.price}  
-                  {isAdmin && (
-                    <>
-                      <button onClick={() => setEditing(p)}>Edit</button>
-                      <button onClick={() => handleDelete(p.id)}>Delete</button>
-                    </>
-                  )}
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+  {products.map((p) => (
+    <li key={p.id} className="list-item">
+      {editing && editing.id === p.id ? (
+        <form onSubmit={handleUpdate} className="form-inline">
+          <input
+            type="text"
+            value={editing.name}
+            onChange={(e) => setEditing({ ...editing, name: e.target.value })}
+            required
+          />
+          <input
+            type="number"
+            value={editing.price}
+            onChange={(e) => setEditing({ ...editing, price: e.target.value })}
+            required
+          />
+          <button type="submit">Save</button>
+          <button type="button" onClick={() => setEditing(null)}>Cancel</button>
+        </form>
+      ) : (
+        <>
+          <strong>{p.name}</strong> — RM{p.price}
+          {isAdmin ? (
+            <>
+              <button onClick={() => setEditing(p)}>Edit</button>
+              <button onClick={() => handleDelete(p.id)}>Delete</button>
+            </>
+          ) : (
+            <button
+              onClick={() => {
+                const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+                cart.push(p);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                alert(`${p.name} added to cart!`);
+              }}
+            >
+              Add to Cart
+            </button>
+          )}
+        </>
+      )}
+    </li>
+  ))}
+</ul>
+
       </div>
     </div>
   );

@@ -4,7 +4,13 @@ import { getBusinesses, createBusiness, updateBusiness, deleteBusiness } from ".
 
 const BusinessList = () => {
   const [businesses, setBusinesses] = useState([]);
-  const [newBusiness, setNewBusiness] = useState({ name: "", description: "" });
+  const [newBusiness, setNewBusiness] = useState({
+  name: "",
+  businessType: "",
+  location: "",
+  contact: "",
+  description: ""
+});
   const [editing, setEditing] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -64,56 +70,59 @@ const BusinessList = () => {
 
         {isAdmin && (
           <form onSubmit={handleCreate} className="form-inline">
-            <input
-              type="text"
-              placeholder="Business name"
-              value={newBusiness.name}
-              onChange={(e) => setNewBusiness({ ...newBusiness, name: e.target.value })}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Description"
-              value={newBusiness.description}
-              onChange={(e) => setNewBusiness({ ...newBusiness, description: e.target.value })}
-            />
-            <button type="submit">Add</button>
-          </form>
+  <input
+    type="text"
+    placeholder="Name"
+    value={newBusiness.name}
+    onChange={(e) => setNewBusiness({ ...newBusiness, name: e.target.value })}
+    required
+  />
+  <input
+    type="text"
+    placeholder="Type"
+    value={newBusiness.businessType}
+    onChange={(e) => setNewBusiness({ ...newBusiness, businessType: e.target.value })}
+  />
+  <input
+    type="text"
+    placeholder="Location"
+    value={newBusiness.location}
+    onChange={(e) => setNewBusiness({ ...newBusiness, location: e.target.value })}
+  />
+  <input
+    type="text"
+    placeholder="Contact"
+    value={newBusiness.contact}
+    onChange={(e) => setNewBusiness({ ...newBusiness, contact: e.target.value })}
+  />
+  <input
+    type="text"
+    placeholder="Description"
+    value={newBusiness.description}
+    onChange={(e) => setNewBusiness({ ...newBusiness, description: e.target.value })}
+  />
+  <button type="submit">Add</button>
+</form>
+
         )}
 
         <ul className="list">
-          {businesses.map((b) => (
-            <li key={b.id} className="list-item">
-              {editing && editing.id === b.id ? (
-                <form onSubmit={handleUpdate} className="form-inline">
-                  <input
-                    type="text"
-                    value={editing.name}
-                    onChange={(e) => setEditing({ ...editing, name: e.target.value })}
-                    required
-                  />
-                  <input
-                    type="text"
-                    value={editing.description}
-                    onChange={(e) => setEditing({ ...editing, description: e.target.value })}
-                  />
-                  <button type="submit">Save</button>
-                  <button type="button" onClick={() => setEditing(null)}>Cancel</button>
-                </form>
-              ) : (
-                <>
-                  <strong>{b.name}</strong> — {b.description}
-                  {isAdmin && (
-                    <>
-                      <button onClick={() => setEditing(b)}>Edit</button>
-                      <button onClick={() => handleDelete(b.id)}>Delete</button>
-                    </>
-                  )}
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+  {businesses.map((b) => (
+    <li key={b.id} className="list-item">
+      <strong>{b.name}</strong> ({b.businessType})  
+      <p>📍 {b.location} | ☎ {b.contact}</p>
+      <p>{b.description}</p>
+
+      {isAdmin && (
+        <>
+          <button onClick={() => setEditing(b)}>Edit</button>
+          <button onClick={() => handleDelete(b.id)}>Delete</button>
+        </>
+      )}
+    </li>
+  ))}
+</ul>
+
       </div>
     </div>
   );

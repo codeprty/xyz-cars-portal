@@ -1,36 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import { getProducts } from "../services/productService";
 import { createOrder } from "../services/orderService";
 
 const Cart = () => {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart") || "[]"));
   const user = JSON.parse(localStorage.getItem("user"));
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
-  const loadProducts = async () => {
-    try {
-      const data = await getProducts();
-      setProducts(data);
-    } catch {
-      alert("Failed to load products.");
-    }
-  };
-
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
 
   const removeFromCart = (index) => {
     const updated = [...cart];
     updated.splice(index, 1);
     setCart(updated);
+    localStorage.setItem("cart", JSON.stringify(updated));
   };
 
   const totalPrice = cart.reduce((sum, p) => sum + Number(p.price), 0);
@@ -43,7 +23,7 @@ const Cart = () => {
     try {
       const newOrder = await createOrder({ businessId, orderItems, totalPrice });
       alert("Order placed! Proceeding to payment simulation...");
-      navigate(`/payment/${newOrder.id}`);
+      window.location.href = `/payment-simulation/${newOrder.id}`;
     } catch (err) {
       alert("Failed to place order.");
     }
@@ -55,19 +35,8 @@ const Cart = () => {
     <div>
       <Navbar />
       <div className="container">
-        <h1>Cart</h1>
+        <h1>Your Cart</h1>
 
-        <h3>Available Products</h3>
-        <ul className="list">
-          {products.map((p) => (
-            <li key={p.id}>
-              {p.name} — RM{p.price}
-              <button onClick={() => addToCart(p)}>Add to Cart</button>
-            </li>
-          ))}
-        </ul>
-
-        <h3>Your Cart</h3>
         {cart.length === 0 ? (
           <p>Cart is empty.</p>
         ) : (
